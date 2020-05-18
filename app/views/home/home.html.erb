@@ -1,5 +1,12 @@
-<h1>こんにちわ</h1>
-<%= link_to "ログイン", new_user_session_path %>
-<%= link_to "新規登録", new_user_registration_path %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<%= link_to "パスワード忘れた", new_user_password_path %>
+<h1>ホーム</h1>
+<p>最近のコメント<p>
+<p>最近登録されたアイテム</p>
+<% if user_signed_in? %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <%= link_to "ユーザ編集", edit_user_registration_path %>
+<% else %>
+  <%= link_to "ログイン", new_user_session_path %>
+  <%= link_to "新規登録", new_user_registration_path %>
+<% end %>
+<%= link_to "アイテム一覧", items_path %>
+<%= link_to "アイテム登録", new_item_path %>
