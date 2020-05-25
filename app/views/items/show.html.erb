@@ -1,6 +1,35 @@
 <h2><%= @item.name %></h2>
 <div>
   <%= image_tag @item.img.url, :size => '128x128' %>
+  <p>メーカー：<%= @item.company %></p>
   <p>説明</p>
   <p><%= @item.subject %></p>
+  <p><%= link_to "[編集]", edit_item_path %>　
+  <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+
+
+  <p>コメント一覧（<%= @item.comments.count %>）</p>
+  <% @comments.each do |comment| %>
+    <div>
+      <p>名前：<%= comment.user.name %></p>
+      <p><%= comment.content %></p>
+      <% if comment.user == current_user %>
+        <span><%= link_to "[コメントを削除する]", item_comment_path(comment.item_id, comment.id), method: :delete %></span>
+      <% end %>
+      <%= time_ago_in_words(comment.created_at) %>前に投稿
+    </div>
+  <% end %>
+
+  <div>
+    <% if user_signed_in? %>
+      <%= form_with(model: [@item, @comment], local: true) do |f| %>
+        <%= f.text_area :content, class: "form-control", rows: 5 %>
+        <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
+          <i class="far fa-comments"></i> コメントする
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>コメントするにはログインをしてください</p>
+    <% end %>
+  </div>
 </div>

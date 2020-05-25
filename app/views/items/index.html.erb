@@ -1,11 +1,39 @@
-<h2>アイテム一覧</h2>
+<h2>アイテム検索フォーム</h2>
 <div>
-  <% @items.each do |item| %>
-    <li>
-      <%= link_to item.name, item_path(item) %><br>
-      <%= image_tag item.img.url %>
-      <p>説明文</p>
-      <p><%= item.subject %></p>
-    </li>
-  <% end %>
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_or_address, "キーワード" %>
+  <%= f.search_field :name_or_company_cont %>
+
+  <%= f.submit "検索" %>
+<% end %>
 </div>
+
+<% if @result.any? %>
+  <div>
+    <p>検索結果：<%= @result.count %>件</p>
+    <% @result.each do |result| %>
+      <li>
+        <p><%= image_tag result.img.url, :size => '40x40' %> <%= link_to result.name, item_path(result) %></p>
+        <p>メーカー：<%= result.company %></p>
+        <p>説明文</p>
+        <p><%= result.subject %></p>
+        コメント数（<%= result.comments.count %>）
+      </li>
+    <% end %>
+  </div>
+<% else %>
+<P>検索結果：見つかりませんでした</p>
+<% end %>
+
+<% if @result.nil? %>
+  <div>
+    <% @allitems.each do |item| %>
+      <li>
+        <p><%= image_tag item.img.url, :size => '40x40' %> <%= link_to item.name, item_path(item) %></p>
+        <p>説明文</p>
+        <p><%= item.subject %></p>
+        コメント数（<%= item.comments.count %>）
+      </li>
+    <% end %>
+  </div>
+<% end %>
