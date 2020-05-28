@@ -1,6 +1,5 @@
 <% if user_signed_in? %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <%= link_to "ユーザ編集", edit_user_registration_path %>
+  <%= link_to "マイページ", account_path(current_user) %>
 <% else %>
   <%= link_to "ログイン", new_user_session_path %>
   <%= link_to "新規登録", new_user_registration_path %>

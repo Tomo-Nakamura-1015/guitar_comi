@@ -11,7 +11,8 @@
   <p>コメント一覧（<%= @item.comments.count %>）</p>
   <% @comments.each do |comment| %>
     <div>
-      <p>名前：<%= comment.user.name %></p>
+      <p>名前：<%= link_to comment.user.name, account_path(comment.user) %></p>
+      <p>タイトル：<%= comment.title %></p>
       <p><%= comment.content %></p>
       <% if comment.user == current_user %>
         <span><%= link_to "[コメントを削除する]", item_comment_path(comment.item_id, comment.id), method: :delete %></span>
@@ -23,10 +24,16 @@
   <div>
     <% if user_signed_in? %>
       <%= form_with(model: [@item, @comment], local: true) do |f| %>
-        <%= f.text_area :content, class: "form-control", rows: 5 %>
-        <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
-          <i class="far fa-comments"></i> コメントする
-        <% end %>
+        <div>
+          <%= f.label :title, "タイトル" %>
+          <%= f.text_field :title %>
+        </div>
+        <div>
+          <%= f.text_area :content %>
+        </div>
+        <div>
+          <%= f.submit "コメントする"%>
+        </div>
       <% end %>
     <% else %>
       <p>コメントするにはログインをしてください</p>

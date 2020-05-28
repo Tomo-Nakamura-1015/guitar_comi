@@ -1,0 +1,29 @@
+<div class="card col-sm-10 mt-5 mx-auto px-0">
+  <div class="card-header bg-white">
+    <H3>プロフィール画像を変更する</h3>
+  </div>
+  <div class="card-body">
+    <%= form_with(model: @uer, url: account_image_path, method: :put, local: true) do |form| %>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <div class="account-profile-img mb-3">
+          <%= image_tag @user.image.url, :size => '128x128' %>
+        </div>
+        <% if @user.image? %>
+        <label><%= form.check_box :remove_image %> 画像を削除する</label>
+        <% else %>
+        <%= form.hidden_field :image_cache %>
+        <% end %>
+      </div>
+      <div class="col-sm-8">
+        <%= form.file_field :image, :class => "form-control-file"  %>
+      </div>
+    </div>
+    
+    <div class="actions float-right">
+      <%= link_to 'キャンセル' , account_path, :class => "btn btn-light" %>
+      <%= form.submit "画像を更新", :class => "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>
