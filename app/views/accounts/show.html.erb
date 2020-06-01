@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'star' %>
+
 <h1><%= current_user.name %>様のマイページ</h1>
 <%= image_tag current_user.image.url, :size => '128x128' %><br>
 <p><%= link_to "[ユーザー情報編集]", edit_account_path%>　
@@ -6,15 +8,7 @@
   <% if current_user.comments.any? %>
     <%= current_user.name %>様の残したコメント：<%= current_user.comments.count %><br>
     <% @comments.each do |comment| %>
-      <div>
-      <% if comment.user == current_user %>
-        <p><%= link_to comment.item.name, item_path(comment.item) %>に対するコメント</p>
-        <p>タイトル：<%= comment.title %></p>
-        <p><%= comment.content %></p>
-          <span><%= link_to "[コメントを削除する]", item_comment_path(comment.item_id, comment.id), method: :delete %></span>
-        <%= time_ago_in_words(comment.created_at) %>前に投稿
-        <% end %>
-      </div>
+      <%= render 'shared/comments', comment: comment %>
     <% end %>
   <% else %>
     コメントはありません

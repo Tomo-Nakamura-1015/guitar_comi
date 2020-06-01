@@ -1,0 +1,22 @@
+<div>
+  <%= link_to comment.user.name, account_path(comment) %>さんの口コミ<br>
+  <span>タイトル：<%= comment.title %></span>
+  <div id="star-rate-<%= comment.id %>"></div>
+
+  <script>
+    $('#star-rate-<%= comment.id %>').raty({
+      size: 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      readOnly: true,
+      score: <%= comment.rate %>,
+  });
+  </script> 
+
+  <p><%= comment.content %></p>
+  <% if comment.user == current_user %>
+    <span><%= link_to "[コメントを削除する]", item_comment_path(comment.item_id, comment.id), method: :delete %></span>
+  <% end %>
+  <%= l comment.created_at %>に投稿
+</div>

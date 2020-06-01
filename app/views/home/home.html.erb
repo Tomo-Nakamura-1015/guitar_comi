@@ -1,21 +1,20 @@
+<%= javascript_pack_tag 'star' %>
 <h1>ホーム</h1>
 
 <h3>最近のコメント</h3>
 <% @comment.each do |comment| %>
-  <div>
-  <p><%= image_tag comment.item.img.url, :size => '35x35' %> <%= link_to comment.item.name, item_path(comment.item) %>に対するコメント</p>
-    <p><%= comment.user.name%></p>
-    <p><%= comment.content %></p>
-  </div>
+  <%= render 'shared/comments', comment: comment %>
 <% end %>
-
 <h3>最近登録されたアイテム</h3>
 <% @item.each do |item| %>
   <div>
     <p><%= link_to item.name, item_path(item) %></p>
     <%= image_tag item.img.url, :size => '128x128' %>
-    <p>メーカー：<%= item.company %></p>
+    <div>メーカー：<%= item.company %></div>
+    <div>
+      <span id="star-rate-<%= item.id %>"></span>
+      <%= render 'shared/star', result: item %>
+      <span>（口コミ：<%= item.comments.count %>件）</span>
     <p><%= item.subject %></p>
-    コメント数（<%= item.comments.count %>）
   </div>
 <% end %>
