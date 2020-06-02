@@ -1,4 +1,5 @@
 <%= javascript_pack_tag 'star' %>
+<% breadcrumb :account %>
 
 <h1><%= current_user.name %>様のマイページ</h1>
 <%= image_tag current_user.image.url, :size => '128x128' %><br>
@@ -8,6 +9,7 @@
   <% if current_user.comments.any? %>
     <%= current_user.name %>様の残したコメント：<%= current_user.comments.count %><br>
     <% @comments.each do |comment| %>
+      <%= link_to comment.item.name, item_path(comment.item) %>への口コミ
       <%= render 'shared/comments', comment: comment %>
     <% end %>
   <% else %>

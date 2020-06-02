@@ -1,7 +1,6 @@
 <div>
-  <%= link_to comment.user.name, account_path(comment) %>さんの口コミ<br>
-  <span>タイトル：<%= comment.title %></span>
-  <div id="star-rate-<%= comment.id %>"></div>
+  <span><%= comment.title %></span>｜
+  <span id="star-rate-<%= comment.id %>"></span>
 
   <script>
     $('#star-rate-<%= comment.id %>').raty({

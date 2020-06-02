@@ -1,10 +1,10 @@
 <%= javascript_pack_tag 'star' %>
+<% breadcrumb :items %>
 
 <h2>アイテム検索フォーム</h2>
 <div>
 <%= search_form_for @q do |f| %>
-  <%= f.label :name_or_address, "キーワード" %>
-  <%= f.search_field :name_or_company_cont %>
+  <%= f.search_field :name_or_company_cont, :placeholder => "キーワードで検索"  %>
   <%= f.submit "検索" %>
 <% end %>
 </div>
@@ -13,9 +13,10 @@
   <div>
     <p>検索結果：<%= @result.count %>件</p>
     <% @result.each do |result| %>
-      <li>
-        <p><%= image_tag result.img.url, :size => '40x40' %> <%= link_to result.name, item_path(result) %></p>
-        <div>メーカー：<%= result.company %></div>
+      <div>
+        <div><%= link_to result.name, item_path(result) %></div>
+        <div><%= image_tag result.image_url, :size => '128x128'  %></div>
+        <div><%= result.company %></div>
         <span id="star-rate-<%= result.id %>"></span>
         <span>（口コミ：<%= result.comments.count %>件）</span>
 
@@ -30,12 +31,11 @@
             score: <%= result.comments.average(:rate).to_f.round(1) %>,
           });
         </script> 
-    
-        <p>説明文</p>
-        <p><%= result.subject %></p>
-      </li>
+
+      </div>
     <% end %>
   </div>
+  <%= paginate @items %>
 <% else %>
   <P>検索結果：見つかりませんでした</p>
 <% end %>

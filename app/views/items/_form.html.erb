@@ -9,6 +9,10 @@
     <%= f.text_field :company %>
   </div>
 
+  <div>
+    <%= f.label :url, "https://amazon.jp/dp/ASIN/" %><br>
+    <%= f.text_field :url %>
+  </div>
 
   <div>
     <%= f.label :subject, "説明" %><br>
@@ -16,8 +20,8 @@
   </div>
 
   <div>
-    <%= f.label :img, "画像" %><br>
-    <%= f.file_field :img %>
+    <%= f.label :image_url, "画像[https://images-na.ssl-images-amazon.com/images/P/[ASIN].09.LZZZZZZZ]" %><br>
+    <%= f.text_area :image_url %>
   </div>
 
   <div>

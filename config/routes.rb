@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  
+
   root 'home#home'
+
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   resource :account, :only => [:show, :edit] do
@@ -13,5 +14,7 @@ Rails.application.routes.draw do
   resources :items do
     resources :comments, only: [:create, :destroy]
   end
+
+  resource :contacts, :only => [:new, :create]
 
 end

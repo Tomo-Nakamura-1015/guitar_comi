@@ -1,3 +1,5 @@
+<% breadcrumb :account_edit %>
+
 <h1>ユーザー情報編集</h1>
 <%= image_tag current_user.image.url, :size => '128x128' %><br>
 <%= link_to "画像を変更する", edit_account_image_path(current_user) %>

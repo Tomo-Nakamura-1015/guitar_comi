@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all.order(created_at: :desc)
+    @items = Item.all.order(created_at: :desc).page(params[:page]).per(1)
+    # @items = @items.page(params[:page])
     @q = Item.ransack(params[:q])
     @result = @q.result(distinct: true)
     @result = @result.order(created_at: :desc)
@@ -46,7 +47,7 @@ class ItemsController < ApplicationController
 
 private
   def item_params
-    params.require(:item).permit(:name, :company, :img, :subject)
+    params.require(:item).permit(:name, :company, :image_url, :subject, :url)
   end
 
 end

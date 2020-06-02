@@ -11,6 +11,7 @@
 
   <body>
   <%= render 'layouts/header' %>
+  <%= breadcrumbs separator: " &rsaquo; " %>
   <%= render 'layouts/flash_message' %>
     <%= yield %>
     <div>
@@ -18,6 +19,6 @@
         ログイン中：<%= image_tag current_user.image.url, :size => '40x40' %><%= current_user.name %>
       <% end %>
     </div>
-    <%= link_to "ホーム", root_path %>
+    <p><%= link_to "ホーム", root_path %>　<%= link_to "お問い合わせ", new_contacts_path %></p>
   </body>
 </html>

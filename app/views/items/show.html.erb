@@ -1,10 +1,13 @@
 <%= javascript_pack_tag 'star' %>
+<% breadcrumb :item, @item %>
 
 <h2><%= @item.name %></h2>
 <div>
-  <%= image_tag @item.img.url, :size => '128x128' %>
+  <%= image_tag @item.image_url %>
   <p>メーカー：<%= @item.company %></p>
-  <div id="star-rate-<%= @item.id %>"></div>
+  <span id="star-rate-<%= @item.id %>"></span>
+  <span>（口コミ：<%= @item.comments.count %>件）</span>
+
   <script>
     $('#star-rate-<%= @item.id %>').raty({
       size: 36,
@@ -16,17 +19,21 @@
       score: <%= @item.comments.average(:rate).to_f.round(1) %>,
     });
   </script> 
+
   <p>説明</p>
   <p><%= @item.subject %></p>
+  <p><%= link_to "amazonで見る", @item.url, target: :_blank %>　楽天で見る</p>
   <p><%= link_to "[編集]", edit_item_path %>　
   <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
 
   <p>コメント一覧（<%= @item.comments.count %>）</p>
   <% @comments.each do |comment| %>
+    <%= comment.user.name %>さんの口コミ
     <%= render 'shared/comments', comment: comment %>
   <% end %>
 
   <div>
+  <h3>口コミを投稿する</h3>
     <% if user_signed_in? %>
       <%= form_with(model: [@item, @comment], local: true) do |f| %>
         <div>
