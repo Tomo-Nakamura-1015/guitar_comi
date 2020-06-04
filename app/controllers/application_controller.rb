@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
+  def admin_user
+    redirect_to root_path unless current_user.admin?
+  end
+
   protected
 
   # name,imageカラム追加のストロングパラメータ

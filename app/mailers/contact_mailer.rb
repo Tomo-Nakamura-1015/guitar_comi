@@ -7,6 +7,5 @@ class ContactMailer < ApplicationMailer
       to:   'tomodoranicof@gmail.com',
       subject: 'お問い合わせ通知'
     )
-    # mail to: ENV['MAIL'], subject: "メールのタイトル"
   end
 end

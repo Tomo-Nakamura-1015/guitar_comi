@@ -3,13 +3,13 @@
     <H3>プロフィール画像を変更する</h3>
   </div>
   <div class="card-body">
-    <%= form_with(model: @uer, url: account_image_path, method: :put, local: true) do |form| %>
+    <%= form_with(model: @user, url: account_image_path, method: :put, local: true) do |form| %>
     <div class="form-group row">
       <div class="col-sm-4">
         <div class="account-profile-img mb-3">
-          <%= image_tag @user.image.url, :size => '128x128' %>
+          <%= image_tag current_user.image.url, :size => '200x200' %>
         </div>
-        <% if @user.image? %>
+        <% if current_user.image? %>
         <label><%= form.check_box :remove_image %> 画像を削除する</label>
         <% else %>
         <%= form.hidden_field :image_cache %>

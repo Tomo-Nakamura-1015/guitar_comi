@@ -1,12 +1,11 @@
 <% breadcrumb :account_edit %>
 
 <h1>ユーザー情報編集</h1>
-<%= image_tag current_user.image.url, :size => '128x128' %><br>
-<%= link_to "画像を変更する", edit_account_image_path(current_user) %>
+<%= image_tag current_user.image.url, :size => '200x200' %><br>
+<%= link_to "プロフィール画像変更", edit_account_image_path(current_user) %>
 <p>名前：<%= current_user.name %><br>
 <%= link_to "変更", edit_account_name_path(current_user) %></p>
 <p>メールアドレス：<%= current_user.email %><br>
 <%= link_to "変更", edit_account_email_path(current_user) %></p>
-<p>パスワード：（非表示）<br>
-<%= link_to "変更", edit_account_password_path(current_user) %></p>
-<p></p>
+<p><%= link_to "パスワード変更", edit_account_password_path(current_user) %></p>
+<p><%= link_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" } %></p>

@@ -2,9 +2,9 @@
 <% breadcrumb :account %>
 
 <h1><%= current_user.name %>様のマイページ</h1>
-<%= image_tag current_user.image.url, :size => '128x128' %><br>
-<p><%= link_to "[ユーザー情報編集]", edit_account_path%>　
-<%= link_to "[ログアウト]", destroy_user_session_path, method: :delete %></p>
+<%= image_tag current_user.image.url, :size => '200x200' %><br>
+<p><%= link_to "[プロフィール設定]", edit_account_path%>　
+<%= link_to "[ログアウト]", destroy_user_session_path, method: :delete, data: { confirm: "本当にログアウトしますか?" } %></p>
 <p>
   <% if current_user.comments.any? %>
     <%= current_user.name %>様の残したコメント：<%= current_user.comments.count %><br>

@@ -23,8 +23,10 @@
   <p>説明</p>
   <p><%= @item.subject %></p>
   <p><%= link_to "amazonで見る", @item.url, target: :_blank %>　楽天で見る</p>
-  <p><%= link_to "[編集]", edit_item_path %>　
-  <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+  <% if current_user.admin? %>
+    <p><%= link_to "[編集]", edit_item_path %>　
+    <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+  <% end %>
 
   <p>コメント一覧（<%= @item.comments.count %>）</p>
   <% @comments.each do |comment| %>
@@ -64,7 +66,7 @@
         </div>
       <% end %>
     <% else %>
-      <p>コメントするにはログインをしてください</p>
+      <p>口コミを投稿するにはログインをしてください</p>
     <% end %>
   </div>
 </div>

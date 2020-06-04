@@ -5,8 +5,8 @@ class Accounts::NamesController < ApplicationController
   end
 
   def update
-    @name = current_user.name
-    if @name.update(name_params)
+    @user = current_user
+    if @user.update(name_params)
       flash[:success] = "名前を変更しました"
       redirect_to account_path
     else
@@ -18,7 +18,7 @@ class Accounts::NamesController < ApplicationController
   private
 
   def name_params
-    params.require(:user).permit(:name)
+    params.permit(:name)
   end
 
 end

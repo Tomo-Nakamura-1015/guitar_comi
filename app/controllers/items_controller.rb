@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :admin_user, only: [:edit, :new, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc).page(params[:page]).per(1)

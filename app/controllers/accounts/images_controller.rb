@@ -18,6 +18,6 @@ class Accounts::ImagesController < ApplicationController
   private
 
   def image_params
-      params.require(:user).permit(:image, :image_cache, :remove_image)
+      params.permit(:image, :image_cache, :remove_image)
   end
 end
