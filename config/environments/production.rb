@@ -1,13 +1,13 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'https://aqueous-cliffs-88077.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'aqueous-cliffs-88077.herokuapp.com' }
   config.action_mailer.raise_delivery_errors = false
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     user_name: ENV['SENDGRID_USERNAME'],
     password: ENV['SENDGRID_PASSWORD'],
     domain: "heroku.com",
-    address: "smtp.SendGrid.net",
+    address: "smtp.sendGrid.net",
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
