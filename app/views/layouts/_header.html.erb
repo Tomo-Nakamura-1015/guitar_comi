@@ -1,3 +1,4 @@
+<h1><%= link_to "ホーム", root_path %></h1>
 <% if user_signed_in? %>
   <%= link_to "マイページ", account_path(current_user) %>
 <% else %>
@@ -5,4 +6,3 @@
   <%= link_to "新規登録", new_user_registration_path %>
 <% end %>
 <%= link_to "アイテム一覧検索", items_path %>
-<%= link_to "アイテム登録", new_item_path %>

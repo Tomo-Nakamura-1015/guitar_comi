@@ -6,17 +6,17 @@ class CommentsController < ApplicationController
     @comment = @item.comments.create(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = "コメントしました"
+      flash[:success] = "口コミを投稿しました"
       redirect_back(fallback_location: root_path)
     else
-      flash[:danger] = "コメントできませんでした"
+      flash[:danger] = "口コミを投稿できませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
-    flash[:danger] = "コメントを削除しました"
+    flash[:danger] = "口コミを削除しました"
     redirect_back(fallback_location: root_path)
   end
 

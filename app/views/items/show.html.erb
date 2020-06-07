@@ -23,12 +23,14 @@
   <p>説明</p>
   <p><%= @item.subject %></p>
   <p><%= link_to "amazonで見る", @item.url, target: :_blank %>　楽天で見る</p>
-  <% if current_user.admin? %>
-    <p><%= link_to "[編集]", edit_item_path %>　
-    <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+  <% if user_signed_in? %>
+    <% if current_user.admin?%>
+      <p><%= link_to "[編集]", edit_item_path %>　
+      <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+    <% end %>
   <% end %>
 
-  <p>コメント一覧（<%= @item.comments.count %>）</p>
+  <p>口コミ一覧（<%= @item.comments.count %>）</p>
   <% @comments.each do |comment| %>
     <%= comment.user.name %>さんの口コミ
     <%= render 'shared/comments', comment: comment %>
@@ -62,11 +64,11 @@
           <%= f.text_area :content %>
         </div>
         <div>
-          <%= f.submit "コメントする"%>
+          <%= f.submit "口コミを投稿する"%>
         </div>
       <% end %>
     <% else %>
-      <p>口コミを投稿するにはログインをしてください</p>
+      <p>口コミを投稿するには<%= link_to "ログイン", new_user_session_path %>してください</p>
     <% end %>
   </div>
 </div>

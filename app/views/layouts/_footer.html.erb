@@ -1,0 +1,9 @@
+<div>
+  <%= link_to "ホーム", root_path %>
+  <%= link_to "お問い合わせ", new_contacts_path %>
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <h3><%= link_to "管理者ページ", rails_admin_path %></h3>
+    <% end %>
+  <% end %>
+</div>

@@ -1,26 +1,60 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
+  let(:comment) { FactoryBot.create(:comment) }
 
-  it "content,user_id,item_idがあると投稿できる" do
-    comment = FactoryBot.create(:comment)
-    expect(comment.save).to be_truthy
+  describe "新規投稿する場合" do
+
+    it "口コミを新規投稿できる" do
+      expect(comment).to be_valid
+    end
+
+    it "titleがないと投稿できない" do
+      comment.title = ""
+      expect(comment).to_not be_valid
+    end
+
+    it "contentがないと投稿できない" do
+      comment.content = ""
+      expect(comment).to_not be_valid
+    end
+
+    it "rateが無いと投稿できない" do
+      comment.rate = ""
+      expect(comment).to_not be_valid
+    end
+
+    it "titleが50文字以内なら投稿できる" do
+      comment.title = "a" * 50
+      expect(comment).to be_valid
+    end
+
+    it "titleが50文字以上だと投稿できない" do
+      comment.title = "a" * 51
+      expect(comment).to_not be_valid
+    end
+
+    it "contentが300文字以内なら投稿できる" do
+      comment.content = "a" * 300
+      expect(comment).to be_valid
+    end
+
+    it "contentが300文字以上だと投稿できない" do
+      comment.content = "a" * 301
+      expect(comment).to_not be_valid
+    end
+
+    it "rateが無いと投稿できない" do
+    end
   end
 
-  it "contentがないと投稿できない" do
-    comment = FactoryBot.create(:comment)
-    comment.content = ""
-    expect(comment.save).to_not be_truthy
-  end
+  describe "すでにデータがある場合" do
 
-  context "すでにデータがある場合" do
-    let(:comment) { FactoryBot.create(:comment) }
-
-    it "commentと紐づくuserが作成できているか" do
+    it "commentと紐づくuserがあるか" do
       expect(comment.user).to be_valid
     end
 
-    it "commentに紐づくitemが作成されているか" do
+    it "commentに紐づくitemがあるか" do
       expect(comment.item).to be_valid
     end
 
