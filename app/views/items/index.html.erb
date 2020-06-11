@@ -21,7 +21,7 @@
     <% @result.each do |result| %>
       <div>
         <div><%= link_to result.name, item_path(result) %></div>
-        <div><%= image_tag result.image_url, :size => '128x128'  %></div>
+        <div><%= image_tag result.image_url, :size => '50%' %></div>
         <div><%= result.company %></div>
         <span id="star-rate-<%= result.id %>"></span>
         <span>（口コミ：<%= result.comments.count %>件）</span>

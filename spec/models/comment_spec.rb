@@ -45,6 +45,8 @@ RSpec.describe Comment, type: :model do
     end
 
     it "rateが無いと投稿できない" do
+      comment.rate = ""
+      expect(comment).to_not be_valid
     end
   end
 

@@ -3,26 +3,27 @@
     <H3>プロフィール画像を変更する</h3>
   </div>
   <div class="card-body">
-    <%= form_with(model: @user, url: account_image_path, method: :put, local: true) do |form| %>
+    <%= form_with(model: @user, url: account_image_path, method: :put, local: true) do |f| %>
     <div class="form-group row">
       <div class="col-sm-4">
         <div class="account-profile-img mb-3">
           <%= image_tag current_user.image.url, :size => '200x200' %>
         </div>
         <% if current_user.image? %>
-        <label><%= form.check_box :remove_image %> 画像を削除する</label>
+        <label><%= f.check_box :remove_image %> 画像を削除する</label>
         <% else %>
-        <%= form.hidden_field :image_cache %>
+        <%= f.hidden_field :image_cache %>
         <% end %>
       </div>
       <div class="col-sm-8">
-        <%= form.file_field :image, :class => "form-control-file"  %>
+      <% f.label :image %>
+        <%= f.file_field :image, :class => "form-control-file"  %>
       </div>
     </div>
     
     <div class="actions float-right">
       <%= link_to 'キャンセル' , account_path, :class => "btn btn-light" %>
-      <%= form.submit "画像を更新", :class => "btn btn-primary" %>
+      <%= f.submit "画像を変更する", :class => "btn btn-primary" %>
     </div>
   </div>
   <% end %>

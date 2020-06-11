@@ -6,6 +6,7 @@ class Accounts::PasswordsController < ApplicationController
  
     def update
       if current_user.update_with_password(password_params)
+        sign_in(current_user, bypass: true)
         flash[:success] = "パスワードを変更しました"
         redirect_to account_path
       else

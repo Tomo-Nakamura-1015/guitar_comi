@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :admin_user, only: [:edit, :new, :destroy]
-  before_action :set_item, only: [:show, :create, :edit, :update, :destroy]
+  before_action :admin_user, only: [:edit, :new, :destroy, :create]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc).page(params[:page]).per(1)
@@ -20,9 +20,10 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.create(item_params)
     if @item.save
       flash[:success] = "新規アイテムを登録しました"
-      redirect_to @item
+      redirect_to root_path
     else
       flash[:danger] = "新規アイテム登録できませんでした"
       render 'new'
