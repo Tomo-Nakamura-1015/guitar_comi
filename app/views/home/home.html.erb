@@ -5,7 +5,7 @@
   <%= comment.user.name %>さんの口コミ
   <%= render 'shared/comments', comment: comment %>
   <div>
-    <%= image_tag comment.item.image_url, :size => '128x128'  %>
+    <%= image_tag comment.item.image_url, :height => '150' %>
     <%= link_to comment.item.name, item_path(comment.item) %>
   </div>
 <% end %>
@@ -13,7 +13,7 @@
 <% @item.each do |item| %>
   <div>
     <p><%= link_to item.name, item_path(item) %></p>
-    <%= image_tag item.image_url, :size => '128x128' %>
+    <%= image_tag item.image_url, :height => '150' %>
     <div>メーカー：<%= item.company %></div>
     <div>
       <span id="star-rate-<%= item.id %>"></span>

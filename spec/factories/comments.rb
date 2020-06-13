@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    title   { "test" }
+    title   { "test_title" }
     rate    { "3" }
     content { "MyString" }
 

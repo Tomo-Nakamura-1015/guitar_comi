@@ -22,17 +22,43 @@ RSpec.describe User, type: :system do
     it "ログインできる" do
       visit root_path
       click_link 'ログイン'
-      fill_in '名前', with: user.name
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: user.password
       click_on 'ログインする'
       expect(page).to have_content 'ログインしました。'
     end
+
+    it '登録済みでないユーザーはログインできない' do
+      visit new_user_session_path
+      fill_in 'メールアドレス', with: 'test@test.com'
+      fill_in 'パスワード', with: 'password'
+      click_on 'ログインする'
+      expect(page).to have_content 'メールアドレスまたはパスワードが違います。'
+    end
   end
 
   describe 'ログイン後' do
+    before { login(user) }
+
+    it "ログアウトできる" do
+      visit account_path
+      click_on '[ログアウト]'
+      expect(page.driver.browser.switch_to.alert.text).to eq "本当にログアウトしますか?"
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content 'ログアウトしました。'
+    end
+
+    it "退会できる" do
+      visit edit_account_path
+      expect do
+        click_link '退会' 
+        expect(page.driver.browser.switch_to.alert.text).to eq "本当に退会しますか?"
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。' 
+      end.to change { User.count }.by(-1)
+    end
+
     describe "プロフィール編集ができる" do
-      before { login(user) }
 
       it "名前の変更ができる" do
         visit edit_account_name_path(user)
@@ -64,9 +90,7 @@ RSpec.describe User, type: :system do
         click_on 'パスワードを変更する'
         expect(page).to have_content 'パスワードを変更しました'
       end
-
     end
-
   end
 
   describe "管理者権限" do
@@ -81,7 +105,5 @@ RSpec.describe User, type: :system do
       visit rails_admin_path
       expect(page).to have_content 'アカウント登録もしくはログインしてください。'
     end
-
   end
-
 end

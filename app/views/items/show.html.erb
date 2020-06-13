@@ -22,7 +22,7 @@
 
   <p>説明</p>
   <p><%= @item.subject %></p>
-  <p><%= link_to "amazonで見る", @item.url, target: :_blank %>　楽天で見る</p>
+  <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>楽天で見る<br>サウンドハウスで見る</p>
   <% if user_signed_in? %>
     <% if current_user.admin?%>
       <p><%= link_to "[編集]", edit_item_path %>　
@@ -42,7 +42,7 @@
       <%= form_with(model: [@item, @comment], local: true) do |f| %>
         <div>
           <%= f.label :title, "タイトル" %>
-          <%= f.text_field :title %>
+          <%= f.text_field :title, id: "title" %>
         </div>
 
         <div class="field" id="star">
@@ -61,10 +61,10 @@
     </script>
         
         <div>
-          <%= f.text_area :content %>
+          <%= f.text_area :content, id: "content" %>
         </div>
         <div>
-          <%= f.submit "口コミを投稿する"%>
+          <%= f.submit "口コミを投稿する" %>
         </div>
       <% end %>
     <% else %>

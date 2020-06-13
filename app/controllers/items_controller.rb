@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(created_at: :desc).page(params[:page]).per(1)
-    # @items = @items.page(params[:page])
     @q = Item.ransack(params[:q])
     @result = @q.result(distinct: true)
     @result = @result.order(created_at: :desc)
