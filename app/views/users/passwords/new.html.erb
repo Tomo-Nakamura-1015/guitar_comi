@@ -1,7 +1,11 @@
-<h2></h2>
+<% breadcrumb :new_user_password %>
+
+<h2>パスワード再設定</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+  <p>下記のフォームに登録されているメールアドレスを入力して送信して下さい。折り返しパスワード再発行URLの記載されたメールが自動で送信されます。</p>
 
   <div class="field">
     <%= f.label :email %><br />

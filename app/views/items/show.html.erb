@@ -1,4 +1,3 @@
-<%= javascript_pack_tag 'star' %>
 <% breadcrumb :item, @item %>
 
 <h2><%= @item.name %></h2>
@@ -39,34 +38,7 @@
   <div>
   <h3>口コミを投稿する</h3>
     <% if user_signed_in? %>
-      <%= form_with(model: [@item, @comment], local: true) do |f| %>
-        <div>
-          <%= f.label :title, "タイトル" %>
-          <%= f.text_field :title, id: "title" %>
-        </div>
-
-        <div class="field" id="star">
-          <%= f.label :rate,  "評価 " ,id: "e" %>
-          <%= f.hidden_field :rate, id: :review_star %>
-        </div>
-
-    <script>
-        $('#star').raty({
-            size     : 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            scoreName: 'comment[rate]',
-        });
-    </script>
-        
-        <div>
-          <%= f.text_area :content, id: "content" %>
-        </div>
-        <div>
-          <%= f.submit "口コミを投稿する" %>
-        </div>
-      <% end %>
+    <%= render 'comments/comments_form' %>
     <% else %>
       <p>口コミを投稿するには<%= link_to "ログイン", new_user_session_path %>してください</p>
     <% end %>

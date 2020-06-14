@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :items do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy, :edit, :update]
   end
 
   resource :contacts, :only => [:new, :create]

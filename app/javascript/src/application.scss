@@ -1,1 +1,56 @@
 @import '~bootstrap/scss/bootstrap';
+
+*　{
+  margin: 0;
+  padding: 0;
+  }
+
+body {
+  color: #3d3d3d;
+}
+
+/* header */
+
+header {
+  border-top: solid 3px #000000;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+header a{
+  color: #000000;
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+}
+
+header a:hover{
+  color: #444444;
+  text-decoration: none;
+}
+
+header a::after {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  content: '';
+  width: 0;
+  height: 2px;
+  background-color: #60e7af;
+  transition: .3s;
+  transform: translateX(-50%);
+}
+
+header a:hover::after{
+  width: 100%;
+}
+
+header li {
+  padding-right: 15px;
+}
+
+#logo {
+  letter-spacing: -1px;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-bottom: 0px;
+}
