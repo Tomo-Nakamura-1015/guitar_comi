@@ -24,14 +24,13 @@
   <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>楽天で見る<br>サウンドハウスで見る</p>
   <% if user_signed_in? %>
     <% if current_user.admin?%>
-      <p><%= link_to "[編集]", edit_item_path %>　
-      <%= link_to "[削除]", item_path, method: :delete, data: { confirm: "本当に削除しますか?" } %></p>
+      <p><%= link_to "編集", edit_item_path, class:"btn btn-success btn-sm" %>
+      <%= link_to "削除", item_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %></p>
     <% end %>
   <% end %>
 
-  <p>口コミ一覧（<%= @item.comments.count %>）</p>
+  <p>口コミ：<%= @item.comments.count %>件</p>
   <% @comments.each do |comment| %>
-    <%= comment.user.name %>さんの口コミ
     <%= render 'shared/comments', comment: comment %>
   <% end %>
 

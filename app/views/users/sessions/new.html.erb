@@ -1,29 +1,34 @@
 <% breadcrumb :login %>
 
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card col-sm-6 mt-5 mx-auto px-0">
+  <div class="card-header">
+    <h2>ログイン</h2>
   </div>
+  <div class="card-body">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :class => "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "パスワード" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", :class => "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="checkbox">
+          <%= f.check_box :remember_me%>
+          <%= f.label :remember_me, "次回から自動でログイン"  %>
+        </div>
+      <% end %>
+
+      <div class="actions">
+        <%= f.submit "ログインする", :class => "btn btn-success btn-block" %>
+      </div>
+    <% end %>
+    パスワードをお忘れの方は<%= link_to "こちら", new_user_password_path %><br>
+    新規登録は<%= link_to "こちら", new_user_registration_path %>
   </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログインする" %>
-  </div>
-<% end %>
-<%= link_to "パスワードをお忘れの方はこちら", new_user_password_path %>
-<%= link_to "新規登録はこちら", new_user_registration_path %>
+</div>

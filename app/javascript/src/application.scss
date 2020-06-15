@@ -24,7 +24,7 @@ header a{
 }
 
 header a:hover{
-  color: #444444;
+  color: #575757;
   text-decoration: none;
 }
 
@@ -54,3 +54,48 @@ header li {
   padding-left: 15px;
   padding-bottom: 0px;
 }
+
+/* footer */
+
+.footer {
+  background-color: #38423b;
+  color: #ffffff;
+}
+
+footer a {
+  color: #ffffff;
+}
+
+footer a:hover{
+  color: #b4b4b4;
+  text-decoration: none;
+}
+
+.footer-logo {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+footer ul li {
+  list-style: none;
+  margin-right: 1em;
+  }
+
+  /* comment */
+
+  .new_comment {
+    height: 41px;
+    line-height: 41px;
+    color: #000;
+    background-color: #dbdbdb;
+    border-bottom: solid 3px #bababa;
+    margin-bottom: 1.5em;
+    overflow: hidden;
+    font-size: 1.142em;
+  }
+
+  .home_comment {
+    width: auto;
+    border-bottom: solid 1px #727272;
+    box-sizing: border-box;
+  }

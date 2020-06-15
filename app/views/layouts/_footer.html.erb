@@ -1,11 +1,25 @@
-<footer>
+<footer class="footer pt-4 font-small mt-4">
   <div>
-    <%= link_to "ホーム", root_path %>
-    <%= link_to "お問い合わせ", new_contacts_path %>
-    <% if user_signed_in? %>
-      <% if current_user.admin? %>
-        <h3><%= link_to "管理者ページ", rails_admin_path %></h3>
-      <% end %>
-    <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mt-md-0 mt-3">
+          <span  class="footer-logo pb-0"><%= link_to "ホーム", root_path %></span><br>
+          <small>© 2020. All Rights Reserved.</small>
+        </div>
+        <div class="col-md-6 mt-md-0 mt-3">
+          <ul>
+            <li><%= link_to "お問い合わせ", new_contacts_path %></li>
+            <li>サポート</li>
+            <li>利用規約</li>
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <li><%= link_to "管理者ページ", rails_admin_path %></li>
+                <li><%= link_to "アイテム登録", new_item_path %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div> 
+      </div>
+    </div>
   </div>
 </footer>

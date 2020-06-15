@@ -1,22 +1,44 @@
-<div>
-  <span><%= comment.title %></span>｜
-  <span id="star-rate-<%= comment.id %>"></span>
+<div class="home_comment mb-2">
+  <div class="row">
+    <div class="col-md-2">
+      <%= link_to account_path(comment) do %>
+        <%= image_tag comment.user.image.url, width: '100px' %>
+        <p><%= comment.user.name %></p>
+      <% end %>
+    </div>
 
-  <script>
-    $('#star-rate-<%= comment.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      readOnly: true,
-      score: <%= comment.rate %>,
-  });
-  </script> 
+    <div class="col-md-6">
+      <div>
+        <span class="font-weight-bold"><%= comment.title %></span>｜
+        <span id="star-rate-<%= comment.id %>"></span>
 
-  <p><%= comment.content %></p>
-  <% if comment.user == current_user %>
-    <span><%= link_to "[口コミを削除する]", item_comment_path(comment.item_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか?" } %>
-    <%= link_to "[口コミを編集する]", edit_item_comment_path(comment.item_id, comment.id) %></span>
-  <% end %>
-  <%= l comment.created_at %>に投稿
+        <script>
+          $('#star-rate-<%= comment.id %>').raty({
+            size: 36,
+            starOff:  '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+            starHalf: '<%= asset_path('star-half.png') %>',
+            readOnly: true,
+            score: <%= comment.rate %>,
+          });
+        </script>
+
+        <p><%= comment.content %></p>
+      </div>
+      <p>
+        <%= l comment.created_at %>
+        <% if comment.user == current_user %>
+          <%= link_to "口コミを削除する", item_comment_path(comment.item_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %>
+          <%= link_to "口コミを編集する", edit_item_comment_path(comment.item_id, comment.id), class:"btn btn-success btn-sm" %>
+        <% end %>
+      </p>
+    </div>
+
+    <div class="col-md-4 text-center">
+      <%= link_to item_path(comment.item) do %>
+        <%= image_tag comment.item.image_url, height: '100px' %>
+        <p><%= comment.item.name %></p>
+      <% end %>
+    </div>
+  </div>
 </div>

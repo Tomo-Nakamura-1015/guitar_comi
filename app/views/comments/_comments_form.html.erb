@@ -1,28 +1,32 @@
-<%= form_with(model: [@item, @comment], local: true) do |f| %>
-  <div>
-    <%= f.label :title, "タイトル" %>
-    <%= f.text_field :title, id: "title" %>
-  </div>
+<div>
+  <%= form_with(model: [@item, @comment], local: true) do |f| %>
+    
+    <div class="form-group">
+      <%= f.label :title, "タイトル", :class => "form-label" %>
+      <%= f.text_field :title, id: "title", :class => "form-control" %>
+    </div>
 
-  <div class="field" id="star">
-    <%= f.label :rate,  "評価 " ,id: "e" %>
-    <%= f.hidden_field :rate, id: :review_star %>
-  </div>
+    <div class="field" id="star">
+      <%= f.label :rate,  "評価 " ,id: "e" %>
+      <%= f.hidden_field :rate, id: :review_star %>
+    </div>
 
-<script>
-  $('#star').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'comment[rate]',
-  });
-</script>
-  
-  <div>
-    <%= f.text_area :content, id: "content" %>
-  </div>
-  <div>
-    <%= f.submit "投稿する" %>
-  </div>
-<% end %>
+  <script>
+    $('#star').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: '<%= asset_path('star-half.png') %>',
+        scoreName: 'comment[rate]',
+    });
+  </script>
+    
+    <div class="form-group">
+        <%= f.label :title, "口コミ内容", :class => "form-label" %>
+        <%= f.text_area :content, id: "content", :class => "form-control" %>
+    </div>
+    <div class="actions">
+        <%= f.submit "投稿する", :class => "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

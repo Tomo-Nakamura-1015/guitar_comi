@@ -1,23 +1,30 @@
-<h3>最近のコメント</h3>
-<% @comment.each do |comment| %>
-  <%= comment.user.name %>さんの口コミ
-  <%= render 'shared/comments', comment: comment %>
-  <div>
-    <%= image_tag comment.item.image_url, :height => '150' %>
-    <%= link_to comment.item.name, item_path(comment.item) %>
+<div class="container">
+  <div class="mb-3">
+    <%= link_to "アイテム一覧検索", items_path %>
   </div>
-<% end %>
-<h3>最近登録されたアイテム</h3>
-<% @item.each do |item| %>
+
   <div>
-    <p><%= link_to item.name, item_path(item) %></p>
-    <%= image_tag item.image_url, :height => '150' %>
-    <div>メーカー：<%= item.company %></div>
-    <div>
-      <span id="star-rate-<%= item.id %>"></span>
-      <%= render 'shared/star', result: item %>
-      <span>（口コミ：<%= item.comments.count %>件）</span>
-    <p><%= item.subject %></p>
-    <%= l item.created_at %>に投稿
+    <h3 class="new_comment">　新着コメント</h3>
+    <% @comment.each do |comment| %>
+        <%= render 'shared/comments', comment: comment %>
+    <% end %>
+
+    <h3 class="new_comment">新着アイテム</h3>
+    <% @item.each do |item| %>
+      <div>
+        <p><%= link_to item.name, item_path(item) %></p>
+        <%= image_tag item.image_url, :height => '150' %>
+        <div>
+          メーカー：<%= item.company %>
+        </div>
+        <div>
+          <span id="star-rate-<%= item.id %>"></span>
+          <%= render 'shared/star', result: item %>
+          <span>（口コミ：<%= item.comments.count %>件）</span>
+        </div>
+        <p><%= item.subject %></p>
+        <%= l item.created_at %>に投稿
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

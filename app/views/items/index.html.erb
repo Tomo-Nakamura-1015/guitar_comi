@@ -1,46 +1,47 @@
 <% breadcrumb :items %>
 
-<h2>アイテム検索フォーム</h2>
-<% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <%= link_to "アイテム登録", new_item_path %>
-  <% end %>
-<% end %>
+<div class="mt-3">
+  <h2 class="text-center my-4">アイテム一覧検索</h2>
 
-<div>
-<%= search_form_for @q do |f| %>
-  <%= f.search_field :name_or_company_cont, :placeholder => "キーワードで検索"  %>
-  <%= f.submit "検索" %>
-<% end %>
-</div>
-
-<% if @result.any? %>
-  <div>
-    <p>検索結果：<%= @result.count %>件</p>
-    <% @result.each do |result| %>
-      <div>
-        <div><%= link_to result.name, item_path(result) %></div>
-        <div><%= image_tag result.image_url, :size => '50%' %></div>
-        <div><%= result.company %></div>
-        <span id="star-rate-<%= result.id %>"></span>
-        <span>（口コミ：<%= result.comments.count %>件）</span>
-
-        <script>
-          $('#star-rate-<%= result.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            readOnly: true,
-            half: true,
-            score: <%= result.comments.average(:rate).to_f.round(1) %>,
-          });
-        </script> 
-
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="text-center mx-auto">
+      <%= search_form_for @q, class: "form-inline" do |f| %>
+        <div class="form-group">
+          <%= f.search_field :name_or_company_cont, :placeholder => "キーワードで検索", class: "form-control input-lg mx-2 mt-2", size: 60 %>
+          <%= f.submit "検索する", :class => "btn btn-success mt-2" %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <%= paginate @items %>
-<% else %>
-  <P>検索結果：見つかりませんでした</p>
-<% end %>
+
+    <% if @result.any? %>
+      <div>
+        <p>検索結果：<%= @result.count %>件</p>
+        <% @result.each do |result| %>
+          <div>
+            <div><%= link_to result.name, item_path(result) %></div>
+            <div><%= image_tag result.image_url, :size => '50%' %></div>
+            <div><%= result.company %></div>
+            <span id="star-rate-<%= result.id %>"></span>
+            <span>（口コミ：<%= result.comments.count %>件）</span>
+
+            <script>
+              $('#star-rate-<%= result.id %>').raty({
+                size: 36,
+                starOff:  '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                starHalf: '<%= asset_path('star-half.png') %>',
+                readOnly: true,
+                half: true,
+                score: <%= result.comments.average(:rate).to_f.round(1) %>,
+              });
+            </script> 
+
+          </div>
+        <% end %>
+      </div>
+      <%= paginate @items %>
+    <% else %>
+      <P>検索結果：見つかりませんでした</p>
+    <% end %>
+</div>
