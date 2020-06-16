@@ -1,18 +1,30 @@
-<div>
-  <div>
-    <h3 class="home_title">　新着コメント</h3>
-    <% @comment.each do |comment| %>
-        <%= render 'shared/comments', comment: comment %>
+<div class="home_about col-md-12">
+  <h3>こんにちわ</h3>
+  <p>ダミーテキスト。は皆様からの口コミをまとめた、ギターに特化した口コミ共有サービスです。<br>
+  失敗したくない機材選びに役に立ちたい、様々なサイトに広がった口コミを一括にまとめたい、シンプルで見やすく使いやすい設計にしたい、そんな思いで始めました。</p>
+  <div class="text-center">
+    <% if user_signed_in? %>
+      <%= link_to "アイテムを探す", items_path, class:"btn btn-info btn-lg w-50" %>
+    <% else %>
+      <%= link_to "新規登録する", new_user_registration_path, class: "btn btn-info w-40" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-info ml-2 w-40" %>
     <% end %>
+  </div>
+</div>
 
-    <h3 class="home_title">　新着アイテム</h3>
-    <div class="row">
-      <% @item.each do |item| %>
-        <%=render 'items/items', item: item %>
-      <% end %>
-    </div>
-    <div class="text-center">
-        <%= link_to "もっとアイテムを探す", items_path, class:"btn btn-success"  %>
-    </div>
+<div>
+  <h3 class="home_title">　新着コメント</h3>
+  <% @comment.each do |comment| %>
+      <%= render 'shared/comments', comment: comment %>
+  <% end %>
+
+  <h3 class="home_title">　新着アイテム</h3>
+  <div class="row">
+    <% @item.each do |item| %>
+      <%=render 'items/items', item: item %>
+    <% end %>
+  </div>
+  <div class="text-center">
+      <%= link_to "もっとアイテムを探す", items_path, class:"btn btn-success" %>
   </div>
 </div>

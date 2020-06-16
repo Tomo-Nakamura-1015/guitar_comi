@@ -8,4 +8,5 @@
 <p>メールアドレス：<%= current_user.email %><br>
 <%= link_to "変更", edit_account_email_path(current_user) %></p>
 <p><%= link_to "パスワード変更", edit_account_password_path(current_user) %></p>
-<p><%= link_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" } %></p>
+
+<!-- <p><%= link_to "退会", user_registration_path, method: :delete, data: { confirm: "本当に退会しますか?" } %></p> -->

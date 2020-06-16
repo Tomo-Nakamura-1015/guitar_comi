@@ -55,6 +55,16 @@ header li {
   padding-bottom: 0px;
 }
 
+/* home */
+
+.home_about {
+  width: 90%;
+  padding: 20px;
+  margin: 10px auto 20px;
+  background-color: #535353;
+  color: #ffffff;
+}
+
 /* footer */
 
 .footer {
@@ -101,13 +111,14 @@ footer ul li {
   .comment_content {
     width: 100%;
     position: relative;
+    padding-bottom: 10px;
+    border-bottom: solid 1px #727272;
   }
 
   /* user */
 
   .user_profile {
-    border-bottom: solid 1px #727272;
-    margin-bottom: 1.5em;
+    margin-bottom: 2em;
   }
 
   /* item */

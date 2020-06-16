@@ -1,15 +1,13 @@
 <div class="home_comment mb-3">
   <div class="row">
-    <div class="col-md-2 text-center pt-2">
-      <%= link_to account_path(comment) do %>
-        <%= image_tag comment.user.image.url, width: '130px' %>
+    <div class="col-md-2 col-3 text-center pt-2">
+        <%= image_tag comment.user.image.url, width: '80px' %>
         <p><%= comment.user.name %></p>
-      <% end %>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 col-9">
       <div class="comment_content">
-        <span class="font-weight-bold"><%= comment.title %></span>｜<span><%= l comment.created_at %></span>
+        <span class="font-weight-bold"><%= comment.title %></span>
         <br><span id="star-rate-<%= comment.id %>"></span>
 
         <script>
@@ -23,24 +21,27 @@
           });
         </script>
 
-        <p><%= comment.content %></p>
       </div>
+      <p class="pt-1"><%= comment.content %></p>
     </div>
 
-    <div class="col-md-4 text-right">
+    <div class="col-md-4 col-12 text-center">
       <%= link_to item_path(comment.item) do %>
-        <%= image_tag comment.item.image_url, width: '200px' %>
-        <p><%= comment.item.company %> / <%= comment.item.name %></p>
+        <%= image_tag comment.item.image_url, width: '220px' %>
       <% end %>
+        <div>
+          <p><%= link_to comment.item.name, item_path(comment.item) %> / <%= comment.item.company %></p>
+        </div>
     </div>
 
-    <% if comment.user == current_user %>
       <div class="col-md-12 text-right">
         <p>
-          <%= link_to "口コミを削除する", item_comment_path(comment.item_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %>
-          <%= link_to "口コミを編集する", edit_item_comment_path(comment.item_id, comment.id), class:"btn btn-success btn-sm" %>
+          <%= l comment.created_at %> に投稿
+          <% if comment.user == current_user %>
+            <%= link_to "口コミを削除する", item_comment_path(comment.item_id, comment.id), method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %>
+            <%= link_to "口コミを編集する", edit_item_comment_path(comment.item_id, comment.id), class:"btn btn-success btn-sm" %>
+          <% end %>
         </p>
       </div>
-    <% end %>
   </div>
 </div>

@@ -2,28 +2,31 @@
 <h1 class="text-center"><%= @item.company %> / <%= @item.name %></h1>
 
 <div class="row item_content">
-  <div class="col-md-4 text-center">
-    <%= image_tag @item.image_url, width: '350px' %>
+  <div class="col-md-12 text-center mb-3">
+    <%= image_tag @item.image_url, width: '' %>
   </div>
 
-  <div class="col-md-8">
-    <p><span id="star-rate-<%= @item.id %>"></span>
-    <span>（口コミ：<%= @item.comments.count %>件）</span></p>
+  <div class="col-md-6">
+    <span id="star-rate-<%= @item.id %>"></span>
+    <span>（口コミ：<%= @item.comments.count %>件）</span>
     <%= render 'shared/star', result: @item %>
-
-    <div>
-      <p><%= @item.subject %></p>
-      <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>
-      <%= link_to "楽天で見る", "https://search.rakuten.co.jp/search/mall/#{@item.name}/", target: :_blank %><br>
-      <%= link_to "サウンドハウスで見る", "https://www.soundhouse.co.jp/search/index?x=0&y=0&search_all=#{@item.name}&s_large_category_cd=&s_mid_category_cd=&i_type=a", target: :_blank %></p>
-      <% if user_signed_in? %>
-        <% if current_user.admin?%>
-          <p><%= link_to "編集", edit_item_path, class:"btn btn-success btn-sm" %>
-          <%= link_to "削除", item_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %></p>
-        <% end %>
-      <% end %>
-    </div>
+    <p><%= @item.subject %></p>
   </div>
+
+  <div class="col-md-6">
+    <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>
+    <%= link_to "楽天で見る", "https://search.rakuten.co.jp/search/mall/#{@item.name}/", target: :_blank %><br>
+    <%= link_to "サウンドハウスで見る", "https://www.soundhouse.co.jp/search/index?x=0&y=0&search_all=#{@item.name}&s_large_category_cd=&s_mid_category_cd=&i_type=a", target: :_blank %></p>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+      <div class="col-md-12 text-right">
+        <p><%= link_to "編集", edit_item_path, class:"btn btn-success btn-sm" %>
+        <%= link_to "削除", item_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %></p>
+      </div>
+    <% end %>
+  <% end %>
 </div>
 
 <h4 class="text-center"><%= @comments.count %> 件のコメント</h4>
@@ -36,7 +39,7 @@
   <h4 class="text-center">口コミを投稿する</h4>
   <div class="col-md-12 font-weight-bold mt-2">
       <% if user_signed_in? %>
-      <%= render 'comments/comments_form' %>
+        <%= render 'comments/comments_form' %>
       <% else %>
         <p>口コミを投稿するには<%= link_to "ログイン", new_user_session_path %>してください</p>
       <% end %>
