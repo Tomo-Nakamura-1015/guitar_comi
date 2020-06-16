@@ -1,4 +1,4 @@
-<footer class="footer pt-4 font-small mt-4">
+<footer class="footer py-4 font-small mt-5">
   <div>
     <div class="container">
       <div class="row">
@@ -9,7 +9,7 @@
         <div class="col-md-6 mt-md-0 mt-3">
           <ul>
             <li><%= link_to "お問い合わせ", new_contacts_path %></li>
-            <li>サポート</li>
+            <li><%= link_to "サポート", support_path %></li>
             <li>利用規約</li>
             <% if user_signed_in? %>
               <% if current_user.admin? %>

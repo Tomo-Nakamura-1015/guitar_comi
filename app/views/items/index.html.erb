@@ -14,34 +14,17 @@
     </div>
   </div>
 
+  <div class="mt-4">
     <% if @result.any? %>
-      <div>
-        <p>検索結果：<%= @result.count %>件</p>
+      <p>検索結果：<%= @result.count %>件</p>
+      <div class="row">
         <% @result.each do |result| %>
-          <div>
-            <div><%= link_to result.name, item_path(result) %></div>
-            <div><%= image_tag result.image_url, :size => '50%' %></div>
-            <div><%= result.company %></div>
-            <span id="star-rate-<%= result.id %>"></span>
-            <span>（口コミ：<%= result.comments.count %>件）</span>
-
-            <script>
-              $('#star-rate-<%= result.id %>').raty({
-                size: 36,
-                starOff:  '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                starHalf: '<%= asset_path('star-half.png') %>',
-                readOnly: true,
-                half: true,
-                score: <%= result.comments.average(:rate).to_f.round(1) %>,
-              });
-            </script> 
-
-          </div>
+          <%=render 'items/items', item: result %>
         <% end %>
       </div>
       <%= paginate @items %>
     <% else %>
       <P>検索結果：見つかりませんでした</p>
     <% end %>
+  </div>
 </div>

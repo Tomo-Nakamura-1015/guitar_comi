@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   root 'home#home'
+  get '/support', to: 'home#support'
 
   devise_for :users, controllers: { registrations: 'users/registrations' }
 

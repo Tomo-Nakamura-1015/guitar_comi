@@ -7,10 +7,10 @@ class Accounts::NamesController < ApplicationController
   def update
     @user = current_user
     if @user.update(name_params)
-      flash[:success] = "名前を変更しました"
+      flash[:notice] = "名前を変更しました"
       redirect_to account_path
     else
-      flash[:danger] = "もう一度やりなおしてください"
+      flash[:error] = "もう一度やりなおしてください"
       render :edit
     end
   end

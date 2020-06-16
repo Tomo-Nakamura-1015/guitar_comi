@@ -21,10 +21,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.create(item_params)
     if @item.save
-      flash[:success] = "新規アイテムを登録しました"
+      flash[:notice] = "新規アイテムを登録しました"
       redirect_to root_path
     else
-      flash[:danger] = "新規アイテム登録できませんでした"
+      flash[:error] = "新規アイテム登録できませんでした"
       render 'new'
     end
   end
@@ -34,17 +34,17 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:success] = "アイテムを更新しました"
+      flash[:notice] = "アイテムを更新しました"
       redirect_to @item
     else
-      flash[:danger] = "アイテム更新できませんでした"
+      flash[:error] = "アイテム更新できませんでした"
       render 'edit'
     end
   end
 
   def destroy
     @item.destroy
-    flash[:danger] = "アイテムを削除しました"
+    flash[:error] = "アイテムを削除しました"
     redirect_to items_path
   end
 

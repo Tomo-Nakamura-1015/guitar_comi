@@ -58,7 +58,7 @@ header li {
 /* footer */
 
 .footer {
-  background-color: #38423b;
+  background-color: #535353;
   color: #ffffff;
 }
 
@@ -83,10 +83,10 @@ footer ul li {
 
   /* comment */
 
-  .new_comment {
+  .home_title {
     height: 41px;
     line-height: 41px;
-    color: #000;
+    color: rgb(48, 48, 48);
     background-color: #dbdbdb;
     border-bottom: solid 3px #bababa;
     margin-bottom: 1.5em;
@@ -95,7 +95,26 @@ footer ul li {
   }
 
   .home_comment {
-    width: auto;
     border-bottom: solid 1px #727272;
-    box-sizing: border-box;
+  }
+
+  .comment_content {
+    width: 100%;
+    position: relative;
+  }
+
+  /* user */
+
+  .user_profile {
+    border-bottom: solid 1px #727272;
+    margin-bottom: 1.5em;
+  }
+
+  /* item */
+
+  .item_content {
+    border-bottom: solid 1px #727272;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding-bottom: 2em;
   }

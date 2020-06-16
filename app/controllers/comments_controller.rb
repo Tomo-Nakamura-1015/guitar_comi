@@ -9,10 +9,10 @@ class CommentsController < ApplicationController
   def update
     @comment = Comment.find(params[:id])
     if @comment.update(comment_params)
-      flash[:success] = "口コミを編集しました"
+      flash[:notice] = "口コミを編集しました"
       redirect_to @item
     else
-      flash[:danger] = "口コミを編集できませんでした"
+      flash[:error] = "口コミを編集できませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
@@ -21,17 +21,17 @@ class CommentsController < ApplicationController
     @comment = @item.comments.create(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      flash[:success] = "口コミを投稿しました"
+      flash[:notice] = "口コミを投稿しました"
       redirect_back(fallback_location: root_path)
     else
-      flash[:danger] = "口コミを投稿できませんでした"
+      flash[:error] = "口コミを投稿できませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
-    flash[:danger] = "口コミを削除しました"
+    flash[:error] = "口コミを削除しました"
     redirect_back(fallback_location: root_path)
   end
 

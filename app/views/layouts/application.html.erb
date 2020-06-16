@@ -13,9 +13,11 @@
   <body>
   <%= render 'layouts/header' %>
   <div class="container">
-    <%= breadcrumbs separator: " &rsaquo; " %>
+    <%= breadcrumbs separator: " &rsaquo; "%>
     <%= render 'layouts/flash_message' %>
-    <%= yield %>
+    <div class="mt-4">
+      <%= yield %>
+    </div>
   </div>
   <%= render 'layouts/footer' %>
   </body>

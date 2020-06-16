@@ -1,27 +1,27 @@
 <%= form_with model: @item do |f|%>
-  <div>
+  <div class="form-group">
     <%= f.label :neme, "アイテム名" %><br>
-    <%= f.text_field :name, id: "item_name" %>
+    <%= f.text_field :name, id: "item_name", :class => "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= f.label :company, "メーカー" %><br>
-    <%= f.text_field :company, id: "item_company" %>
+    <%= f.text_field :company, id: "item_company", :class => "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= f.label :url, "https://amazon.jp/dp/ASIN/" %><br>
-    <%= f.text_field :url, id: "url" %>
+    <%= f.text_field :url, id: "url", :class => "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= f.label :subject, "説明" %><br>
-    <%= f.text_area :subject, id: "item_subject" %>
+    <%= f.text_area :subject, id: "item_subject", :class => "form-control" %>
   </div>
 
-  <div>
+  <div class="form-group">
     <%= f.label :image_url, "画像[https://images-na.ssl-images-amazon.com/images/P/[ASIN].09.LZZZZZZZ]" %><br>
-    <%= f.text_area :image_url, id: "image_url" %>
+    <%= f.text_area :image_url, id: "image_url", :class => "form-control" %>
   </div>
 
   <div>

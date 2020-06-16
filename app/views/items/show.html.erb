@@ -1,45 +1,44 @@
 <% breadcrumb :item, @item %>
+<h1 class="text-center"><%= @item.company %> / <%= @item.name %></h1>
 
-<h2><%= @item.name %></h2>
-<div>
-  <%= image_tag @item.image_url %>
-  <p>メーカー：<%= @item.company %></p>
-  <span id="star-rate-<%= @item.id %>"></span>
-  <span>（口コミ：<%= @item.comments.count %>件）</span>
+<div class="row item_content">
+  <div class="col-md-4 text-center">
+    <%= image_tag @item.image_url, width: '350px' %>
+  </div>
 
-  <script>
-    $('#star-rate-<%= @item.id %>').raty({
-      size: 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      readOnly: true,
-      half: true,
-      score: <%= @item.comments.average(:rate).to_f.round(1) %>,
-    });
-  </script> 
+  <div class="col-md-8">
+    <p><span id="star-rate-<%= @item.id %>"></span>
+    <span>（口コミ：<%= @item.comments.count %>件）</span></p>
+    <%= render 'shared/star', result: @item %>
 
-  <p>説明</p>
-  <p><%= @item.subject %></p>
-  <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>楽天で見る<br>サウンドハウスで見る</p>
-  <% if user_signed_in? %>
-    <% if current_user.admin?%>
-      <p><%= link_to "編集", edit_item_path, class:"btn btn-success btn-sm" %>
-      <%= link_to "削除", item_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %></p>
-    <% end %>
-  <% end %>
+    <div>
+      <p><%= @item.subject %></p>
+      <p><%= link_to "amazonで見る", @item.url, target: :_blank %><br>
+      <%= link_to "楽天で見る", "https://search.rakuten.co.jp/search/mall/#{@item.name}/", target: :_blank %><br>
+      <%= link_to "サウンドハウスで見る", "https://www.soundhouse.co.jp/search/index?x=0&y=0&search_all=#{@item.name}&s_large_category_cd=&s_mid_category_cd=&i_type=a", target: :_blank %></p>
+      <% if user_signed_in? %>
+        <% if current_user.admin?%>
+          <p><%= link_to "編集", edit_item_path, class:"btn btn-success btn-sm" %>
+          <%= link_to "削除", item_path, method: :delete, data: { confirm: "本当に削除しますか?" }, class:"btn btn-success btn-sm" %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-  <p>口コミ：<%= @item.comments.count %>件</p>
-  <% @comments.each do |comment| %>
-    <%= render 'shared/comments', comment: comment %>
-  <% end %>
-
+<h4 class="text-center"><%= @comments.count %> 件のコメント</h4>
   <div>
-  <h3>口コミを投稿する</h3>
-    <% if user_signed_in? %>
-    <%= render 'comments/comments_form' %>
-    <% else %>
-      <p>口コミを投稿するには<%= link_to "ログイン", new_user_session_path %>してください</p>
+    <% @comments.each do |comment| %>
+      <%= render 'shared/comments', comment: comment %>
     <% end %>
   </div>
+
+  <h4 class="text-center">口コミを投稿する</h4>
+  <div class="col-md-12 font-weight-bold mt-2">
+      <% if user_signed_in? %>
+      <%= render 'comments/comments_form' %>
+      <% else %>
+        <p>口コミを投稿するには<%= link_to "ログイン", new_user_session_path %>してください</p>
+      <% end %>
+    </div>
 </div>

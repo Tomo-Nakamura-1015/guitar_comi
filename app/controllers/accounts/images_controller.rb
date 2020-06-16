@@ -7,10 +7,10 @@ class Accounts::ImagesController < ApplicationController
   def update
     @user = current_user
     if @user.update(image_params)
-      flash[:success] = "画像を変更しました"
+      flash[:notice] = "画像を変更しました"
       redirect_to account_path
     else
-      flash[:danger] = "もう一度やりなおしてください"
+      flash[:error] = "もう一度やりなおしてください"
       render :edit
     end
   end

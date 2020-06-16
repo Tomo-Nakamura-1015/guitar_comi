@@ -1,15 +1,18 @@
 <% breadcrumb :account %>
 
-<h1><%= current_user.name %>様のマイページ</h1>
-<%= image_tag current_user.image.url, :size => '200x200' %><br>
-<p><%= link_to "[プロフィール設定]", edit_account_path %></p>
-<p>
+<h1 class="text-center"><%= current_user.name %>様のマイページ</h1>
+<div class="text-center user_profile">
+  <%= image_tag current_user.image.url, :size => '200x200' %><br>
+  <p><%= link_to "プロフィール設定", edit_account_path, class:"btn btn-success mt-2" %></p>
+</div>
+
+<div>
   <% if current_user.comments.any? %>
-    <%= current_user.name %>様の残した口コミ：<%= current_user.comments.count %>件<br>
+    <h3 class="home_title">　口コミ：<%= current_user.comments.count %>件</h3>
     <% @comments.each do |comment| %>
       <%= render 'shared/comments', comment: comment %>
     <% end %>
   <% else %>
-    投稿した口コミはありません
+    <p>投稿した口コミはありません</p>
   <% end %>
-</p>
+</div>

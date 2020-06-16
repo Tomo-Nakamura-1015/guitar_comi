@@ -7,10 +7,10 @@ class Accounts::PasswordsController < ApplicationController
     def update
       if current_user.update_with_password(password_params)
         sign_in(current_user, bypass: true)
-        flash[:success] = "パスワードを変更しました"
+        flash[:notice] = "パスワードを変更しました"
         redirect_to account_path
       else
-        flash[:danger] = "もう一度やりなおしてください"
+        flash[:error] = "もう一度やりなおしてください"
         render :edit
       end
     end

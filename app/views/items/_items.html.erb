@@ -1,0 +1,14 @@
+<div class="col-md-3 col-sm-4 col-xs-12">
+  <div class="card mb-3">
+      <%= link_to item_path(item) do%>
+        <%= image_tag item.image_url, class: "p-2 card-img-top text-center" %>
+      <% end %>
+    <div class="card-body pt-1 border-top">
+      <span class="card-title"><%= link_to item.name, item_path(item) %></span>
+      <br><%= item.company %>
+      <p><span id="star-rate-<%= item.id %>"></span>
+        <%= render 'shared/star', result: item %></p>
+      <p>口コミ：<%= item.comments.count %>件</p>
+    </div>
+  </div>
+</div>
