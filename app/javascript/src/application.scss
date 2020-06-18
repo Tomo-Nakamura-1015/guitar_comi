@@ -68,16 +68,16 @@ header li {
 /* footer */
 
 .footer {
-  background-color: #535353;
-  color: #ffffff;
+  background-color: #b6b4b4;
+  color: #444444;
 }
 
 footer a {
-  color: #ffffff;
+  color: #444444;
 }
 
 footer a:hover{
-  color: #b4b4b4;
+  color: #8b8b8b;
   text-decoration: none;
 }
 
@@ -90,6 +90,12 @@ footer ul li {
   list-style: none;
   margin-right: 1em;
   }
+
+.copylight {
+  background-color: #444444;
+  color: #ffffff;
+  padding: 1em;
+}
 
   /* comment */
 
