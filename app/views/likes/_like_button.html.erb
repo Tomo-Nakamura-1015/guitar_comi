@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+  <% if item.liked?(current_user) %>
+    <%= form_with model: @like, url: item_likes_path(item), method: :delete, local: true do |f| %>
+      <div><%= f.hidden_field :item_id, value: item.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <%= f.submit "お気に入り解除", class: "btn btn-danger btn-sm" %>
+    <% end %>
+  <% else %>
+    <%= form_with model: @like, local: true, url: item_likes_path(item) do |f| %>
+      <div><%= f.hidden_field :item_id, value: item.id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      </div>
+      <%= f.submit "お気に入り登録", class: "btn btn-success btn-sm" %>
+    <% end %>
+  <% end %>
+<% end %>

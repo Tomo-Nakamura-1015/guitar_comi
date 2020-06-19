@@ -6,9 +6,10 @@
     <div class="card-body pt-1 border-top">
       <span class="card-title"><%= link_to item.name, item_path(item) %></span>
       <br><%= item.company %>
-      <p><span id="star-rate-<%= item.id %>"></span>
-        <%= render 'shared/star', result: item %></p>
+      <div id="star-rate-<%= item.id %>"></div>
+        <%= render 'shared/star', result: item %>
       <p>口コミ：<%= item.comments.count %>件</p>
+      <span class=" text-center"><%= render 'likes/like_button', item: item %></span>
     </div>
   </div>
 </div>

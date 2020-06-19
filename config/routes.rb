@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+  get 'likes/destroy'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   
   root 'home#home'
@@ -16,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :comments, only: [:create, :destroy, :edit, :update]
+    resource :likes, only: [:create, :destroy]
+  get :likes, on: :collection
   end
 
   resource :contacts, :only => [:new, :create]

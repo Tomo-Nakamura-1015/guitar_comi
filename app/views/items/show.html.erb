@@ -11,6 +11,7 @@
     <span>（口コミ：<%= @item.comments.count %>件）</span>
     <%= render 'shared/star', result: @item %>
     <p><%= @item.subject %></p>
+    <%= render 'likes/like_button', item: @item %>
   </div>
 
   <div class="col-md-6">

@@ -16,3 +16,10 @@
     <p>投稿した口コミはありません</p>
   <% end %>
 </div>
+
+<h3 class="home_title">　お気に入り</h3>
+  <div class="row">
+  <% current_user.like_items.each do |item| %>
+    <%=render 'items/items', item: item %>
+  <% end %>
+</div>
