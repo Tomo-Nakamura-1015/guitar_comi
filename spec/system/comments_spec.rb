@@ -43,7 +43,7 @@ RSpec.describe Comment, type: :system do
       login(user)
       visit item_path(item)
       expect do
-        click_link '[口コミを削除する]' 
+        click_link '口コミを削除する' 
         expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか?"
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content '口コミを削除しました' 
@@ -54,7 +54,7 @@ RSpec.describe Comment, type: :system do
       login(user)
       visit account_path
       expect do
-        click_link '[口コミを削除する]' 
+        click_link '口コミを削除する' 
         expect(page.driver.browser.switch_to.alert.text).to eq "本当に削除しますか?"
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content '口コミを削除しました' 

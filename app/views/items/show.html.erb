@@ -30,7 +30,7 @@
   <% end %>
 </div>
 
-<h4 class="text-center"><%= @comments.count %> 件のコメント</h4>
+<h4 class="text-center"><%= @comments.count %> 件の口コミ</h4>
   <div>
     <% @comments.each do |comment| %>
       <%= render 'shared/comments', comment: comment %>

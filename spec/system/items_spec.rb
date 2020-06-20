@@ -15,7 +15,7 @@ RSpec.describe Item, type: :system do
     it "アイテムの詳細表示" do
       visit item_path(item)
       expect(page).to have_content item.name
-      expect(page).to have_content '口コミ一覧'
+      expect(page).to have_content 'の口コミ'
     end
   end
 

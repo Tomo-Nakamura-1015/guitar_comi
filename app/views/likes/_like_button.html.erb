@@ -4,7 +4,7 @@
       <div><%= f.hidden_field :item_id, value: item.id %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       </div>
-      <%= f.submit "お気に入り解除", class: "btn btn-danger btn-sm" %>
+      <%= f.submit "お気に入り登録中", class: "btn btn-danger btn-sm" %>
     <% end %>
   <% else %>
     <%= form_with model: @like, local: true, url: item_likes_path(item) do |f| %>

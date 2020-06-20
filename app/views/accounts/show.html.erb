@@ -7,19 +7,33 @@
 </div>
 
 <div>
-  <% if current_user.comments.any? %>
-    <h3 class="home_title">　口コミ：<%= current_user.comments.count %>件</h3>
-    <% @comments.each do |comment| %>
-      <%= render 'shared/comments', comment: comment %>
-    <% end %>
-  <% else %>
-    <p>投稿した口コミはありません</p>
-  <% end %>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link active" data-toggle="tab">口コミ：<%= current_user.comments.count %>件</a>
+    </li>
+
+    <li class="nav-item">
+      <a href="#tab2" class="nav-link" data-toggle="tab">お気に入り：<%= current_user.likes.count %></a>  
+    </li>
+  </ul>
 </div>
 
-<h3 class="home_title">　お気に入り</h3>
-  <div class="row">
-  <% current_user.like_items.each do |item| %>
-    <%=render 'items/items', item: item %>
-  <% end %>
+<div class="tab-content pt-3">
+  <div id="tab1" class="tab-pane active">
+    <% if current_user.comments.any? %>
+      <% @comments.each do |comment| %>
+        <%= render 'shared/comments', comment: comment %>
+      <% end %>
+    <% else %>
+      <p>投稿した口コミはありません</p>
+    <% end %>
+  </div>
+
+  <div id="tab2" class="tab-pane mx-2">
+    <div class="row">
+      <% @items.each do |item| %>
+        <%=render 'items/items', item: item %>
+      <% end %>
+    </div>
+  </div>
 </div>
